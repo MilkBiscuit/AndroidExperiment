@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">ExperimentApp</string>
+    <string name="app_name">Experiment</string>
+    <string name="title_activity_jetpack_compose">Compose Experiment</string>
 </resources>

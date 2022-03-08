@@ -10,15 +10,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ExperimentApp">
         <activity
-            android:name=".MainActivity"
+            android:name=".JetpackComposeActivity"
             android:exported="true"
-            android:windowSoftInputMode="stateHidden|adjustNothing"
-            >
+            android:label="@string/title_activity_jetpack_compose"
+            android:theme="@style/Theme.ExperimentApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:windowSoftInputMode="stateHidden|adjustNothing"
+            >
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
         </activity>
     </application>
 
