@@ -43,7 +43,7 @@ fun InputModeDemoView() {
             )
         }
         TextField(
-            value = "no need to input",
+            value = "no need to input anything",
             onValueChange = {},
             modifier = Modifier.fillMaxWidth().align(Alignment.TopCenter)
         )
