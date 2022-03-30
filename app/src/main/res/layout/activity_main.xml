@@ -35,6 +35,13 @@
             android:layout_weight="1"
             android:background="@android:color/holo_blue_light"
             />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_restart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Restart"
+            />
     </LinearLayout>
 
     <EditText
