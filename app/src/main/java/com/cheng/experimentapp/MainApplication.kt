@@ -1,14 +1,16 @@
 package com.cheng.experimentapp
 
 import android.app.Application
-import android.util.Log
+import timber.log.Timber
+
 
 class MainApplication: Application() {
 
     override fun onCreate() {
         super<Application>.onCreate()
 
-        Log.e("MainApplication", "trpb67, onCreate called")
+        Timber.plant(Timber.DebugTree())
+        Timber.e("trpb67, application onCreate called")
     }
 
 }

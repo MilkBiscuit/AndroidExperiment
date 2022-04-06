@@ -9,14 +9,14 @@ class LaunchAppUC constructor(
     private val context: Context
 ) {
 
-    fun immediateRestart() {
+    fun launchApp() {
         val packageManager = context.packageManager
         val intent = packageManager.getLaunchIntentForPackage(context.packageName)
         val componentName = intent!!.component
         val mainIntent = Intent.makeRestartActivityTask(componentName)
         context.startActivity(mainIntent)
 
-        exitProcess(0)
+//        exitProcess(0)
     }
 
 }

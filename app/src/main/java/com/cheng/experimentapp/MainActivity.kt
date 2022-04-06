@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,6 +24,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.e("trpb67", "onDestroy")
+        Timber.d("trpb67, onDestroy")
     }
 }
