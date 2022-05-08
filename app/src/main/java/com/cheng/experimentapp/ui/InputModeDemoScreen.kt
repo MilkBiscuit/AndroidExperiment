@@ -27,7 +27,7 @@ fun InputModeDemoScreen() {
 }
 
 @Composable
-fun InputModeDemoView() {
+private fun InputModeDemoView() {
     Box {
         Column(
             Modifier.fillMaxSize(),
@@ -55,7 +55,7 @@ fun InputModeDemoView() {
 
 @Preview(showBackground = true)
 @Composable
-fun DefaultPreview() {
+private fun DefaultPreview() {
     ExperimentAppTheme {
         InputModeDemoView()
     }
