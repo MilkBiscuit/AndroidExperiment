@@ -32,6 +32,7 @@ fun AnimatedVectorDrawableDemoScreen() {
 @OptIn(ExperimentalAnimationGraphicsApi::class)
 @Composable
 fun AnimatedVectorDrawableDemoView() {
+    /*
     val image = AnimatedImageVector.animatedVectorResource(id = R.drawable.anim_contactless)
     var atEnd by remember { mutableStateOf(false) }
     Image(
@@ -45,4 +46,5 @@ fun AnimatedVectorDrawableDemoView() {
             atEnd = !atEnd
         }
     }
+    */
 }
