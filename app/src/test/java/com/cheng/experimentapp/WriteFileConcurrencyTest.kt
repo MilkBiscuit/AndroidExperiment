@@ -8,8 +8,6 @@ import org.junit.Assert
 import org.junit.FixMethodOrder
 import org.junit.Test
 import org.junit.runners.MethodSorters
-import java.io.FileNotFoundException
-import java.lang.RuntimeException
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class WriteFileConcurrencyTest {
@@ -22,12 +20,8 @@ class WriteFileConcurrencyTest {
                 launch(Dispatchers.Default) {
                     val writeResult = FilePersistenceHelper.atomicWriteFile("writeFileTest/0.txt", contentToWrite)
                     Assert.assertTrue(writeResult)
-                    try {
-                        val contentReadOut = FilePersistenceHelper.readFile("writeFileTest/0.txt")
-                        Assert.assertEquals(contentToWrite, contentReadOut)
-                    } catch (e: FileNotFoundException) {
-                        println("The file does not exist, because being written in another thread.")
-                    }
+                    val contentReadOut = FilePersistenceHelper.readFile("writeFileTest/0.txt")
+                    Assert.assertEquals(contentToWrite, contentReadOut)
                 }
                 launch(Dispatchers.IO) {
                     val writeResult = FilePersistenceHelper.atomicWriteFile("writeFileTest/0.txt", contentToWrite)

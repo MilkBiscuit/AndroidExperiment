@@ -7,39 +7,49 @@
 package com.cheng.experimentapp
 
 import androidx.core.util.AtomicFile
-import java.io.*
-import java.lang.RuntimeException
-import java.nio.file.Files
-import java.nio.file.Paths
-import java.nio.file.StandardCopyOption
+import java.io.File
+import java.io.FileOutputStream
+import java.io.FileReader
+import java.io.FileWriter
+import java.util.concurrent.locks.ReentrantReadWriteLock
 
 object FilePersistenceHelper {
 
-    fun readFile(readFilePath: String): String {
-        val reader = FileReader(readFilePath)
-        val text = reader.readText()
-        reader.close()
+    private val lock = ReentrantReadWriteLock()
+    private val readLock = lock.readLock()
+    private val writeLock = lock.writeLock()
 
-        return text
+    fun readFile(readFilePath: String): String {
+        try {
+            readLock.lock()
+            val reader = FileReader(readFilePath)
+            val text = reader.readText()
+            reader.close()
+
+            return text
+        } finally {
+            readLock.unlock()
+        }
     }
 
     fun atomicWriteFile(writeFilePath: String, content: String): Boolean {
         val atomicFile = AtomicFile(File(writeFilePath))
         var fos: FileOutputStream? = null
         return try {
-            synchronized(this) {
-                atomicFile.delete()
-                fos = atomicFile.startWrite()
-                fos?.write(content.toByteArray())
-                atomicFile.finishWrite(fos)
+            writeLock.lock()
+            atomicFile.delete()
+            fos = atomicFile.startWrite()
+            fos.write(content.toByteArray())
+            atomicFile.finishWrite(fos)
 
-                true
-            }
+            true
         } catch (e: Exception) {
             println("Can not write file: $e")
             atomicFile.failWrite(fos)
 
             false
+        } finally {
+            writeLock.unlock()
         }
     }
 
