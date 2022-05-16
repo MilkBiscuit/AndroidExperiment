@@ -8,6 +8,7 @@ package com.cheng.experimentapp
 
 import androidx.core.util.AtomicFile
 import java.io.*
+import java.lang.RuntimeException
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.nio.file.StandardCopyOption
@@ -26,11 +27,14 @@ object FilePersistenceHelper {
         val atomicFile = AtomicFile(File(writeFilePath))
         var fos: FileOutputStream? = null
         return try {
-            fos = atomicFile.startWrite()
-            fos.write(content.toByteArray())
-            atomicFile.finishWrite(fos)
+            synchronized(this) {
+                atomicFile.delete()
+                fos = atomicFile.startWrite()
+                fos?.write(content.toByteArray())
+                atomicFile.finishWrite(fos)
 
-            true
+                true
+            }
         } catch (e: Exception) {
             println("Can not write file: $e")
             atomicFile.failWrite(fos)
