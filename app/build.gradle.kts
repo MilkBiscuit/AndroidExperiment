@@ -1,5 +1,3 @@
-import org.gradle.kotlin.dsl.support.kotlinCompilerOptions
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -33,9 +31,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-//    composeOptions {
-//        kotlinCompilerExtensionVersion = "1.5.1"
-//    }
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -48,19 +43,16 @@ android {
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-//    implementation(libs.androidx.fragment.ktx)
-    implementation(libs.androidx.navigation.compose)
-    implementation(libs.material)
-
+    implementation(libs.google.material)
     implementation(libs.androidx.constraintlayout)
-//    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
-    implementation("androidx.compose.material:material:1.6.8")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.6.8")
+    // Jetpack compose
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.compose.material)
+    implementation(libs.ui.tooling.preview)
 
     implementation(libs.timber)
 
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    testImplementation(libs.test.junit)
+    androidTestImplementation(libs.android.test.androidx.junit)
+    androidTestImplementation(libs.android.test.androidx.espresso.core)
 }
