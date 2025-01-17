@@ -50,6 +50,9 @@ dependencies {
     implementation(libs.androidx.compose.material)
     implementation(libs.ui.tooling.preview)
 
+    // Invoke JS code from kotlin
+    implementation(libs.rhino)
+    // Logging tool
     implementation(libs.timber)
 
     testImplementation(libs.test.junit)
