@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Experiment</string>
-    <string name="title_activity_main">Input Mode Experiment</string>
+    <string name="title_activity_main">Experiment Main App</string>
     <string name="title_activity_jetpack_compose">Compose Experiment</string>
 </resources>
