@@ -45,10 +45,17 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.google.material)
     implementation(libs.androidx.constraintlayout)
+
     // Jetpack compose
+    val composeBom = platform(libs.androidx.compose.bom)
+    implementation(composeBom)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.compose.material)
     implementation(libs.ui.tooling.preview)
+
+    // Try to reproduce "LayoutNode should be attached to an owner" issue
+    implementation(libs.google.map.compose)
+    implementation(libs.google.play.service.map)
 
     // Invoke JS code from kotlin
     implementation(libs.rhino)
@@ -56,6 +63,8 @@ dependencies {
     implementation(libs.timber)
 
     testImplementation(libs.test.junit)
+    testImplementation(composeBom)
+    androidTestImplementation(composeBom)
     androidTestImplementation(libs.android.test.androidx.junit)
     androidTestImplementation(libs.android.test.androidx.espresso.core)
 }
